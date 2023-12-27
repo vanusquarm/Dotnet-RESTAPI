@@ -5,7 +5,7 @@ namespace WebApplication.API.Repositories
 {
     public class TodoRepository : BaseRepositorySync<TodoItem>
     {
-        public TodoRepository(DbContext context) : base(context)
+        public TodoRepository(ApplicationDbContext context) : base(context)
         {
         }
 
