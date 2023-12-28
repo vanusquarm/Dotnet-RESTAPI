@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication.API.Entities.Models
 {
-    public abstract class TodoItem
+    public class TodoItem
     {
         public Guid Id { get; protected set; }
 
