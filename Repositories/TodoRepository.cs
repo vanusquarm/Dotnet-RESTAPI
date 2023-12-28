@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication.API.Entities.Models;
+using WebApplication.API.Persistence;
 
 namespace WebApplication.API.Repositories
 {
