@@ -22,6 +22,19 @@ namespace WebApplication.API.Repositories {
             return _dbContext.Set<TEntity>();
         }
 
+        public (IQueryable<TEntity> Items, int TotalCount) GetAll(int pageNumber, int pageSize)
+        {
+            var query = _dbContext.Set<TEntity>().AsQueryable();
+            var total = query.Count();
+
+            var items = query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return (items.AsQueryable(), total);
+        }
+
         public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter)
         {
             return _dbContext.Set<TEntity>().Where(filter);
