@@ -17,10 +17,20 @@ public class BaseController<TEntity, TRepository> : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetAll()
+    public IActionResult GetAll(int pageNumber = 1, int pageSize = 10)
     {
-        var entities = Repository.GetAll();
-        return Ok(entities);
+        var (items, totalCount) = Repository.GetAll(pageNumber, pageSize);
+
+        var response = new
+        {
+            Items = items,
+            TotalCount = totalCount,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            PageCount = (int)Math.Ceiling((double)totalCount / pageSize)
+        };
+
+        return Ok(response);
     }
 
     [HttpGet("{id}")]
