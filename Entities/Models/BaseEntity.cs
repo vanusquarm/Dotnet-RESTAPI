@@ -12,15 +12,17 @@ namespace WebApplication.API.Entities.Models
         public string Title { get; set; } = null!;
         public string CreatedBy { get; set; } = null!;
 
-        [Range(0.00, 99999.99)] // forcing two decimal place and max amount to transfer
+        [Range(0.00, 99999.99)] // or [Precision(18,2)] // forcing two decimal place and max amount to transfer 
         decimal Amount { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Date Created")]
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public string? LastModifiedBy { get; set; }
-        public DateTime? LastModifiedDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? UpdatedAt { get; set; }
+        public string? UpdatedBy { get; set; }
         public bool Completed { get; set; }
+
+        public string? FF { get; set; }
     }
 }
 
