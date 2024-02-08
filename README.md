@@ -12,6 +12,7 @@ dotnet restore
 Run the following command to apply the initial database migration:
 
 ```bash
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.25
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
