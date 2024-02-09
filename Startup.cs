@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Cors;
 
 namespace WebApplication.API
 {
@@ -34,6 +35,14 @@ namespace WebApplication.API
             });
 
             services.AddHealthChecks();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowSpecificOrigins",
+                    policy  =>
+                    {
+                        policy.WithOrigins("http://localhost:3000");
+                    });
+            });
 
             // services.AddDbContext<ApplicationDbContext>(options =>
             //     options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
@@ -59,6 +68,8 @@ namespace WebApplication.API
             }
 
             app.UseRouting();
+            
+            app.UseCors("AllowSpecificOrigins");
 
             app.UseAuthorization();
 
